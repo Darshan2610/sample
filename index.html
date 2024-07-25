@@ -1,11 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    hello
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Learning Path</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Adaptive Learning Path</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#overview">Architecture Overview</a></li>
+            <li><a href="#database">Database Schema</a></li>
+            <li><a href="#api">API Endpoints</a></li>
+            <li><a href="#frontend">Front-end Components</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="overview">
+            <h2>Architecture Overview</h2>
+            <p>Developing an adaptive learning path feature that customizes the sequence of educational content and exercises based on each student's performance and progress. The feature dynamically adjusts to provide more practice on weaker areas and introduces new topics as the student improves.</p>
+        </section>
+        <section id="database">
+            <h2>Database Schema</h2>
+            <h3>Students Table:</h3>
+            <ul>
+                <li>student_id (Primary Key)</li>
+                <li>name</li>
+                <li>email</li>
+                <li>current_level</li>
+            </ul>
+            <h3>Content Table:</h3>
+            <ul>
+                <li>content_id (Primary Key)</li>
+                <li>title</li>
+                <li>description</li>
+                <li>level</li>
+            </ul>
+            <h3>Performance Table:</h3>
+            <ul>
+                <li>performance_id (Primary Key)</li>
+                <li>student_id (Foreign Key)</li>
+                <li>content_id (Foreign Key)</li>
+                <li>score</li>
+                <li>timestamp</li>
+            </ul>
+            <h3>Progress Table:</h3>
+            <ul>
+                <li>progress_id (Primary Key)</li>
+                <li>student_id (Foreign Key)</li>
+                <li>content_id (Foreign Key)</li>
+                <li>status (e.g., 'completed', 'in-progress')</li>
+            </ul>
+        </section>
+        <section id="api">
+            <h2>API Endpoints</h2>
+            <h3>GET /students/{id}</h3>
+            <p>Fetch student details and current level.</p>
+            <h3>GET /content/next</h3>
+            <p>Fetch next content based on student’s current level and performance.</p>
+            <h3>POST /performance</h3>
+            <p>Record the student’s performance on a piece of content.</p>
+            <h3>GET /progress/{student_id}</h3>
+            <p>Fetch progress details of a student.</p>
+            <h3>POST /progress</h3>
+            <p>Update progress status of a student on a content.</p>
+        </section>
+        <section id="frontend">
+            <h2>Front-end Components</h2>
+            <h3>Dashboard Component:</h3>
+            <p>Display student’s current progress and performance metrics. Provide navigation to the next recommended content.</p>
+            <h3>Content Viewer Component:</h3>
+            <p>Display educational content and exercises. Include interactive elements for submitting responses.</p>
+            <h3>Performance Tracker Component:</h3>
+            <p>Allow students to view their performance history. Provide feedback and additional resources based on performance.</p>
+        </section>
+        <section id="design-choices">
+            <h2>Explanation of Design Choices</h2>
+            <h3>Database Schema:</h3>
+            <p>The Students Table stores basic student information and their current learning level. The Content Table contains educational content and the level it is associated with. The Performance Table records each student’s performance, allowing us to track progress and identify weaker areas. The Progress Table tracks the status of content completion for each student, ensuring the system knows what content has been attempted.</p>
+            <h3>API Endpoints:</h3>
+            <p>The API layer provides necessary endpoints to fetch student data, retrieve the next piece of content, record performance, and update progress. These endpoints help in deciding the next content, recording how well a student performed, fetching progress details, and updating the progress status.</p>
+            <h3>Front-end Components:</h3>
+            <p>The Dashboard Component provides an overview of the student's progress and performance, helping them understand their learning journey. The Content Viewer Component displays the educational content and exercises, forming the core interaction point for students. The Performance Tracker Component allows students to see their past performance and receive feedback, encouraging self-assessment and improvement.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Adaptive Learning Path. All rights reserved.</p>
+    </footer>
+</body>
 </html>
